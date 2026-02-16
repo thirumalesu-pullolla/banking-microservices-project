@@ -31,4 +31,18 @@ public class AccountController {
     public List<Account> getAccountsByCustomer(@PathVariable Long customerId) {
         return service.getAccountsByCustomer(customerId);
     }
+
+    @PostMapping("/{accountId}/deposit")
+    public Account deposit(@PathVariable Long accountId,
+                           @RequestParam Double amount) {
+        return service.deposit(accountId, amount);
+    }
+
+    @PostMapping("/{accountId}/withdraw")
+    public Account withdraw(@PathVariable Long accountId,
+                            @RequestParam Double amount) {
+        return service.withdraw(accountId, amount);
+    }
+
+
 }

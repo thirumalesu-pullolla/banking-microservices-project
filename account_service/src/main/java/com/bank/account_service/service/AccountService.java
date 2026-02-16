@@ -36,4 +36,29 @@ public class AccountService {
     public List<Account> getAccountsByCustomer(Long customerId) {
         return repository.findByCustomerId(customerId);
     }
+
+    public Account deposit(Long accountId, Double amount) {
+
+        Account account = repository.findById(accountId)
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+
+        account.setBalance(account.getBalance() + amount);
+
+        return repository.save(account);
+    }
+
+    public Account withdraw(Long accountId, Double amount) {
+
+        Account account = repository.findById(accountId)
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+
+        if(account.getBalance() < amount) {
+            throw new RuntimeException("Insufficient balance");
+        }
+
+        account.setBalance(account.getBalance() - amount);
+
+        return repository.save(account);
+    }
+
 }

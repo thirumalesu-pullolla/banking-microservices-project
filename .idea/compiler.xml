@@ -18,6 +18,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="authentication_service" />
         <module name="account_service" />
+        <module name="transfer-service" />
       </profile>
     </annotationProcessing>
   </component>
@@ -26,6 +27,7 @@
       <module name="account_service" options="-parameters" />
       <module name="authentication_service" options="-parameters" />
       <module name="registration-service" options="-parameters" />
+      <module name="transfer-service" options="-parameters" />
     </option>
   </component>
 </project>
