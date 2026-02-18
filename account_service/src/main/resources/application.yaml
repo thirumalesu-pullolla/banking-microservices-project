@@ -1,16 +1,23 @@
-
-server:
-  port: 8083
+#
+#server:
+#  port: 8083
+#
+#spring:
+#  application:
+#    name: account_service
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/account_db
+#    username: root
+#    password: Mysql@234
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
 
 spring:
   application:
-    name: account_service
-  datasource:
-    url: jdbc:mysql://localhost:3306/account_db
-    username: root
-    password: Mysql@234
+    name: account-service
+  config:
+    import: optional:configserver:http://localhost:8888
 
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true

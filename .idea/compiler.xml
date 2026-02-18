@@ -16,7 +16,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="config-server" />
         <module name="authentication_service" />
+        <module name="bill-service" />
         <module name="account_service" />
         <module name="transfer-service" />
       </profile>
@@ -26,6 +28,8 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="account_service" options="-parameters" />
       <module name="authentication_service" options="-parameters" />
+      <module name="bill-service" options="-parameters" />
+      <module name="config-server" options="-parameters" />
       <module name="registration-service" options="-parameters" />
       <module name="transfer-service" options="-parameters" />
     </option>
