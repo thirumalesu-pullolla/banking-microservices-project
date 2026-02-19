@@ -5,7 +5,7 @@ import com.bank.transfer_service.service.TransferService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/transfer")
+@RequestMapping("/transfer")            //@RequestMapping("/api/transfer")
 public class TransferController {
 
     private final TransferService service;

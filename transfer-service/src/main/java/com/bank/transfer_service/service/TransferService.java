@@ -25,7 +25,7 @@ public class TransferService {
 
         // Withdraw from sender
         restTemplate.postForObject(
-                "http://localhost:8083/api/accounts/"
+                "http://ACCOUNT-SERVICE/api/accounts/"
                         + fromAccount
                         + "/withdraw?amount=" + amount,
                 null,
@@ -34,7 +34,7 @@ public class TransferService {
 
         // Deposit to receiver
         restTemplate.postForObject(
-                "http://localhost:8083/api/accounts/"
+                "http://ACCOUNT-SERVICE/api/accounts/"
                         + toAccount
                         + "/deposit?amount=" + amount,
                 null,
