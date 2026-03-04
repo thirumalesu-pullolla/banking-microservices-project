@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name = "account-service")  //@FeignClient(name = "account-service",url = "http://localhost:8083")
 public interface AccountClient {
 
-    @PostMapping("/api/accounts/{accountId}/withdraw")
+    @PostMapping("/accounts/{accountId}/withdraw")
     Object withdraw(@PathVariable Long accountId,
                     @RequestParam Double amount);
 
-    @PostMapping("/api/accounts/{accountId}/deposit")
+    @PostMapping("/accounts/{accountId}/deposit")
     Object deposit(@PathVariable Long accountId,
                    @RequestParam Double amount);
 }
