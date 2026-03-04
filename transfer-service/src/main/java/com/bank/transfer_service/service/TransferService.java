@@ -1,5 +1,6 @@
 package com.bank.transfer_service.service;
 
+import com.bank.transfer_service.client.AccountClient;
 import com.bank.transfer_service.entity.Transfer;
 import com.bank.transfer_service.repository.TransferRepository;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
@@ -12,69 +13,32 @@ import java.time.LocalDateTime;
 public class TransferService {
 
     private final TransferRepository repository;
-    private final RestTemplate restTemplate;
-    private final CircuitBreakerFactory circuitBreakerFactory;
+    private final AccountClient accountClient;
+    //private final RestTemplate restTemplate;
+    //private final CircuitBreakerFactory circuitBreakerFactory;
 
     public TransferService(TransferRepository repository,
-                           RestTemplate restTemplate,
-                           CircuitBreakerFactory circuitBreakerFactory) {
+                           AccountClient accountClient
+                            ) {
         this.repository = repository;
-        this.restTemplate = restTemplate;
-        this.circuitBreakerFactory = circuitBreakerFactory;
+        this.accountClient = accountClient;
+
     }
 
     public Transfer transfer(Long fromAccount,
                              Long toAccount,
                              Double amount) {
 
-        return circuitBreakerFactory.create("accountServiceCB")
-                .run(() -> executeTransfer(fromAccount, toAccount, amount),
-                        throwable -> fallbackTransfer(fromAccount, toAccount, amount));
-    }
-
-    private Transfer executeTransfer(Long fromAccount,
-                                     Long toAccount,
-                                     Double amount) {
-
-        // Withdraw
-        restTemplate.postForObject(
-                "http://ACCOUNT-SERVICE/accounts/"
-                        + fromAccount
-                        + "/withdraw?amount=" + amount,
-                null,
-                Object.class
-        );
-
-        // Deposit
-        restTemplate.postForObject(
-                "http://ACCOUNT-SERVICE/accounts/"
-                        + toAccount
-                        + "/deposit?amount=" + amount,
-                null,
-                Object.class
-        );
+        accountClient.withdraw(fromAccount, amount);
+        accountClient.deposit(toAccount, amount);
 
         Transfer transfer = new Transfer();
         transfer.setFromAccount(fromAccount);
         transfer.setToAccount(toAccount);
         transfer.setAmount(amount);
-        transfer.setDate(java.time.LocalDateTime.now());
+        transfer.setDate(LocalDateTime.now());
 
         return repository.save(transfer);
     }
 
-    private Transfer fallbackTransfer(Long fromAccount,
-                                      Long toAccount,
-                                      Double amount) {
-
-        System.out.println("Account Service is down! Executing fallback.");
-
-        Transfer transfer = new Transfer();
-        transfer.setFromAccount(fromAccount);
-        transfer.setToAccount(toAccount);
-        transfer.setAmount(0.0);
-        transfer.setDate(java.time.LocalDateTime.now());
-
-        return transfer;
-    }
 }
