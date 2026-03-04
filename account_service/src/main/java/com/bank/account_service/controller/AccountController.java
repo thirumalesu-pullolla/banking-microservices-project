@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@RequestMapping("/accounts")
-@RequestMapping("/api/accounts")
+@RequestMapping("/accounts") //@RequestMapping("/api/accounts") for normal use first one for gateway purpose
 public class AccountController {
 
     private final AccountService service;
