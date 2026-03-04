@@ -1,5 +1,6 @@
 package com.bank.bill_service.service;
 
+import com.bank.bill_service.client.AccountClient;
 import com.bank.bill_service.entity.BillPayment;
 import com.bank.bill_service.repository.BillRepository;
 import org.springframework.stereotype.Service;
@@ -11,26 +12,19 @@ import java.time.LocalDateTime;
 public class BillService {
 
     private final BillRepository repository;
-    private final RestTemplate restTemplate;
+    private final AccountClient accountClient;
 
     public BillService(BillRepository repository,
-                       RestTemplate restTemplate) {
+                       AccountClient accountClient) {
         this.repository = repository;
-        this.restTemplate = restTemplate;
+        this.accountClient = accountClient;
     }
 
     public BillPayment payBill(Long accountId,
                                String billType,
                                Double amount) {
 
-        // Withdraw money from account
-        restTemplate.postForObject(
-                "http://localhost:8083/api/accounts/"
-                        + accountId
-                        + "/withdraw?amount=" + amount,
-                null,
-                Object.class
-        );
+        accountClient.withdraw(accountId, amount);
 
         BillPayment bill = new BillPayment();
         bill.setAccountId(accountId);
@@ -40,4 +34,5 @@ public class BillService {
 
         return repository.save(bill);
     }
+
 }

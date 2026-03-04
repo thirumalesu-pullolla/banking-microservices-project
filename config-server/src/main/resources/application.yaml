@@ -11,4 +11,4 @@ spring:
     config:
       server:
         native:
-          search-locations: file:///C:\Users\Thiru\Desktop\Banking Microservices System\config-server\src\main\resources\config
+          search-locations: file:///C:\Users\Thiru\Desktop\banking-microservices-project\config-server\src\main\resources\config
