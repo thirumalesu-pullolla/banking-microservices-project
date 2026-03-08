@@ -1,0 +1,356 @@
+{
+  "info": {
+    "_postman_id": "cdc61d54-7a8b-49e9-884f-1a41841d6860",
+    "name": "Banking Microservices System collection",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52355896",
+    "_collection_link": "https://go.postman.co/collection/52355896-cdc61d54-7a8b-49e9-884f-1a41841d6860?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Authentication-service",
+      "item": [
+        {
+          "name": "New Request",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "http://localhost:8082/api/login",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"ravi@gmail.com\",\r\n  \"password\": \"1234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8082/api/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Account-service",
+      "item": [
+        {
+          "name": "Create account",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"customerId\": 1\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8083/api/accounts",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8083",
+              "path": [
+                "api",
+                "accounts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Check balance",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8083/api/accounts/1/balance",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8083",
+              "path": [
+                "api",
+                "accounts",
+                "1",
+                "balance"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all accounts",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "deposit money",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8083/api/accounts/1/deposit?amount=5000.00",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8083",
+              "path": [
+                "api",
+                "accounts",
+                "1",
+                "deposit"
+              ],
+              "query": [
+                {
+                  "key": "amount",
+                  "value": "5000.00"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Registration service",
+      "item": [
+        {
+          "name": "Register new ones",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Ravi\",\r\n  \"email\": \"ravi@gmail.com\",\r\n  \"phone\": \"9876543210\",\r\n  \"password\": \"1234\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8081/api/register\n",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "api",
+                "register\n"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Transfer service",
+      "item": [
+        {
+          "name": "call transfer service",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8084/api/transfer?fromAccount=1&toAccount=2&amount=1000\n",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8084",
+              "path": [
+                "api",
+                "transfer"
+              ],
+              "query": [
+                {
+                  "key": "fromAccount",
+                  "value": "1"
+                },
+                {
+                  "key": "toAccount",
+                  "value": "2"
+                },
+                {
+                  "key": "amount",
+                  "value": "1000\n"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "call transfer service Copy",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8084/api/transfer?fromAccount=1&toAccount=2&amount=1000\n",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8084",
+              "path": [
+                "api",
+                "transfer"
+              ],
+              "query": [
+                {
+                  "key": "fromAccount",
+                  "value": "1"
+                },
+                {
+                  "key": "toAccount",
+                  "value": "2"
+                },
+                {
+                  "key": "amount",
+                  "value": "1000\n"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Bill service",
+      "item": [
+        {
+          "name": "Pay bill with type and amount",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "API Gateway",
+      "item": [
+        {
+          "name": "deposit",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:9090/accounts/1/deposit?amount=200",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "9090",
+              "path": [
+                "accounts",
+                "1",
+                "deposit"
+              ],
+              "query": [
+                {
+                  "key": "amount",
+                  "value": "200"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "transfer",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:9090/transfer?fromAccount=2&toAccount=1&amount=2000",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "9090",
+              "path": [
+                "transfer"
+              ],
+              "query": [
+                {
+                  "key": "fromAccount",
+                  "value": "2"
+                },
+                {
+                  "key": "toAccount",
+                  "value": "1"
+                },
+                {
+                  "key": "amount",
+                  "value": "2000"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "check balance",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
